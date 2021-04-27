@@ -17,6 +17,12 @@ const App = () => {
 
   const width = Dimensions.get("window").width;
 
+  const _toggleTask = (id) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[id]["completed"] = !currentTasks[id]["completed"];
+    setTasks(currentTasks);
+  };
+
   const _deleteTask = (id) => {
     // 삭제 버튼을 클릭했을 때 항목의 id를 이용하여 tasks에서 해당 항목을 삭제하는 함수.
     // Task 컴포넌트에 생성된 항목 삭제 함수와 함께 항목 내용 전체를 전달해 자식 컴포넌트에서도 항목의 id를 확인할 수 있도록 수정
@@ -56,7 +62,12 @@ const App = () => {
           {Object.values(tasks)
             .reverse()
             .map((item) => (
-              <Task key={item.id} item={item} deleteTask={_deleteTask} />
+              <Task
+                key={item.id}
+                item={item}
+                deleteTask={_deleteTask}
+                toggleTask={_toggleTask}
+              />
             ))}
         </List>
       </Container>

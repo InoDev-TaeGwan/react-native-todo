@@ -17,6 +17,12 @@ const App = () => {
 
   const width = Dimensions.get("window").width;
 
+  const _updateTask = (item) => {
+    const currentTasks = Object.assign({}, tasks);
+    currentTasks[item.id] = item;
+    setTasks(currentTasks);
+  };
+
   const _toggleTask = (id) => {
     const currentTasks = Object.assign({}, tasks);
     currentTasks[id]["completed"] = !currentTasks[id]["completed"];
@@ -30,6 +36,7 @@ const App = () => {
     delete currentTasks[id];
     setTasks(currentTasks);
   };
+
   const _addTask = () => {
     // id는 할 일 항목이 추가되는 시간의 타임스태프를 이용
     // 내용을 나타내는 text는 Input 컴포넌트에 입력된 값을 지정.
@@ -41,9 +48,11 @@ const App = () => {
     };
     setTasks({ ...tasks, ...newTaskObject });
   };
+
   const _handleTextChange = (text) => {
     setNewTask(text);
   };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -67,6 +76,7 @@ const App = () => {
                 item={item}
                 deleteTask={_deleteTask}
                 toggleTask={_toggleTask}
+                updateTask={_updateTask}
               />
             ))}
         </List>

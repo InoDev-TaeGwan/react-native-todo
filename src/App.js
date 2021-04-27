@@ -53,6 +53,10 @@ const App = () => {
     setNewTask(text);
   };
 
+  const _onBlur = () => {
+    setNewTask("");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
@@ -66,6 +70,7 @@ const App = () => {
           value={newTask}
           onSubmitEditing={_addTask}
           onChangeText={_handleTextChange}
+          onBlur={_onBlur}
         />
         <List width={width}>
           {Object.values(tasks)

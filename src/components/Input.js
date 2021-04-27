@@ -20,7 +20,13 @@ import PropsTypes from "prop-types";
  * - returnKeyType : 키보드의 완료 버튼 설정
  * - keyboardApperance : 아이폰 키보드 색상을 변경
  */
-const Input = ({ placeholder, value, onSubmitEditing, onChangeText }) => {
+const Input = ({
+  placeholder,
+  value,
+  onSubmitEditing,
+  onChangeText,
+  onBlur,
+}) => {
   const width = useWindowDimensions().width;
   return (
     <StyledInput
@@ -34,6 +40,7 @@ const Input = ({ placeholder, value, onSubmitEditing, onChangeText }) => {
       value={value}
       onSubmitEditing={onSubmitEditing}
       onChangeText={onChangeText}
+      onBlur={onBlur}
     />
   );
 };
@@ -56,6 +63,7 @@ Input.propTypes = {
   value: PropsTypes.string.isRequired,
   onSubmitEditing: PropsTypes.func.isRequired,
   onChangeText: PropsTypes.func.isRequired,
+  onBlur: PropsTypes.func.isRequired,
 };
 
 export default Input;
